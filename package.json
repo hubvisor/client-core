@@ -1,0 +1,22 @@
+{
+  "name": "@hubvisor/client-core",
+  "version": "0.1.0",
+  "description": "Hubvisor core client library",
+  "main": "dist/esm",
+  "module": "dist/esm",
+  "repository": "https://github.com/hubvisor/client-core.git",
+  "author": "Hubvisor",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint src",
+    "fix": "eslint src --fix",
+    "dev": "nodemon -w src --exec 'yarn fix && yarn build:esm'",
+    "prebuild": "rm -rf dist",
+    "build:esm": "mkdir -p dist/esm && babel src --out-dir dist/esm",
+    "doc": "jsdoc src/** -d docs",
+    "build": "yarn build:esm"
+  },
+  "devDependencies": {
+    "@hubvisor/build-core": "^0.1.0"
+  }
+}
