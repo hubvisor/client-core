@@ -4,15 +4,24 @@ function createLogger ({ name, level, color, output, tag }) {
   // noop when not debugging
   if (!isDebug) { return () => {} }
 
-  const nameStyle = 'background: linear-gradient(#4D4D4D, #5D5D5D); color: #fff; padding: 2px 4px; border-top-left-radius: 4px; border-bottom-left-radius: 4px;'
-  const tagStyle = 'background: #607D8B; color: #fff; padding: 2px 2px;'
-  const levelStyle = `background: ${color}; color: #fff; padding: 2px 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px;`
-  const badge = []
-  badge.push(tag ? `%c${name}%c${tag}%c${level}` : `%c${name}%c${level}`, nameStyle)
-  if (tag) { badge.push(tagStyle) }
-  badge.push(levelStyle)
+  const badge = [
+    {
+      value: name,
+      style: 'background: linear-gradient(#4D4D4D, #5D5D5D); color: #fff; padding: 2px 4px; border-top-left-radius: 4px; border-bottom-left-radius: 4px;'
+    }, {
+      value: tag,
+      style: 'background: #607D8B; color: #fff; padding: 2px 2px;'
+    }, {
+      value: level,
+      style: `background: ${color}; color: #fff; padding: 2px 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px;`
+    }
+  ]
 
-  return (...args) => output(...badge, ...args)
+  badge.filter(item => item.value)
+  const badgeString = badge.map(item => `%c${item.value}`).join('')
+  const badgeArgs = badge.map(item.style)
+
+  return (...args) => output(badgeString, ...badgeArgs, ...args)
 }
 
 /**
@@ -23,7 +32,7 @@ class Logger {
    * @param {string} name The name of the log to display in every message
    * @param {string} [tag] An optional tag (for example to display a specific subsystem messages)
    */
-  constructor ({ name, tag }) {
+  constructor ({ name, tag } = {}) {
     /**
      * Prints a message with verbose level
      * @param {...*} message The message to log
