@@ -1,27 +1,47 @@
 import { isDebug } from './environment'
+import { hashCode } from './util'
 
-function createLogger ({ name, level, color, output, tag }) {
-  // noop when not debugging
-  if (!isDebug) { return () => {} }
+// generates a unique color for each tag according to the string to quickly identify each sub-system tag
+function colorFromTag (tag) {
+  if (!tag) { return '#607D8B' }
 
+  const angle = Math.PI // because why not
+  // hue depend on tag hash, saturation and value are hand-picked from a flat color
+  const hue = (hashCode(tag) * angle) % 360
+  const saturation = 70
+  const value = 53
+  return `hsl(${hue}, ${saturation}%, ${value}%)`
+}
+
+function createBadge ({ name, level, tag, color }) {
+  const tagColor = colorFromTag(tag)
   const badge = [
     {
       value: name,
       style: 'background: linear-gradient(#4D4D4D, #5D5D5D); color: #fff; padding: 2px 4px; border-top-left-radius: 4px; border-bottom-left-radius: 4px;'
     }, {
-      value: tag,
-      style: 'background: #607D8B; color: #fff; padding: 2px 2px;'
-    }, {
       value: level,
-      style: `background: ${color}; color: #fff; padding: 2px 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px;`
+      style: `background: ${color}; color: #fff; padding: 2px 4px;`
+    }, {
+      value: tag,
+      style: `background: ${tagColor}; color: #fff; padding: 2px 2px; border-top-right-radius: 4px; border-bottom-right-radius: 4px;`
     }
-  ]
+  ].filter(item => item.value)
 
-  badge.filter(item => item.value)
-  const badgeString = badge.map(item => `%c${item.value}`).join('')
-  const badgeArgs = badge.map(item.style)
+  const badgeFormatString = badge.map(item => `%c${item.value}`).join('')
+  const badgeArgs = badge.map(item => item.style)
+  return [ badgeFormatString, ...badgeArgs ]
+}
 
-  return (...args) => output(badgeString, ...badgeArgs, ...args)
+function createLogger ({ name, level, color, output, tag }) {
+  // noop when not debugging
+  if (!isDebug) { return () => {} }
+
+  const badge = createBadge({ name, level, tag, color })
+
+  return (...args) => {
+    output(...badge, ...args)
+  }
 }
 
 /**
@@ -38,7 +58,7 @@ class Logger {
      * @param {...*} message The message to log
      * @function
      */
-    this.trace = createLogger({ name, tag, level: 'verbose', color: '#000', output: console.log })
+    this.trace = createLogger({ name, tag, level: 'trace', color: '#000', output: console.log })
 
     /**
      * Prints a message with debug level

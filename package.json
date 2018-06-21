@@ -14,7 +14,7 @@
     "prebuild": "rm -rf dist",
     "build:esm": "mkdir -p dist/esm && babel src --out-dir dist/esm",
     "doc": "jsdoc src/** -d docs",
-    "build": "yarn build:esm"
+    "build": "yarn doc && yarn build:esm"
   },
   "devDependencies": {
     "@hubvisor/build-core": "^0.1.0"

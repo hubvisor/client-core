@@ -21,7 +21,7 @@ function localStorageFlag () {
 }
 
 function urlFlag () {
-  const params = parseQuery(window.location.search)
+  const params = parseQuery(window && window.location && window.location.search)
   return params['hubvisor_debug']
 }
 
@@ -39,10 +39,15 @@ export const env = (process.env.NODE_ENV || 'development')
 export const isProduction = (env === 'production')
 
 /**
- * The current code version tag.
+ * Determines whether the current code is executed in a browser ()
+ */
+export const isBrowser = (process.browser)
+
+/**
+ * The current code version tag. Injected by webpack in browser environments. Injected by {@link https://docs.npmjs.com/misc/scripts#packagejson-vars|npmjs} in node environments.
  * @const {string}
  */
-export const version = process.env.VERSION
+export const version = process.env.VERSION || process.env.npm_package_version
 
 /**
  * Sets whether future application executions should be run in debug mode.

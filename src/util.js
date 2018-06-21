@@ -7,6 +7,15 @@ function _uuid (placeholder) {
   return ([ 1e7 ] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, _uuid)
 }
 
+export function hashCode (str) {
+  let hash = 0
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash) + str.charCodeAt(i)
+    hash |= 0 // Convert to 32bit integer
+  }
+  return hash
+}
+
 /**
  * Generates a uuid-compliant string.
  * The level of randomness does not garantee a safe use for security-critical missions but it may be good enough for some use cases.
