@@ -1,3 +1,17 @@
 {
-  "extends": "@hubvisor/build-core/babelrc.json"
+  "extends": "@hubvisor/build-core/babelrc.json",
+  /*
+  The base config is problematic because
+  1: ignore is not properly extended...
+  2: babel-jest does not set "test" env while loading this file...
+  */
+  "env": {
+    "production": {
+      "ignore": [
+        "**/__tests__/**/*.js",
+        "**/*.test.js",
+        "**/*.spec.js"
+      ]
+    }
+  }
 }

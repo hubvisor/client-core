@@ -1,3 +1,4 @@
+import { isarray } from './types'
 
 // imported from prebid.js
 function _uuid (placeholder) {
@@ -77,4 +78,13 @@ export function autobind (self) {
     }
   }
   return self
+}
+
+/**
+ * Wraps any value in an array except arrays. null and undefined are converted to empty array.
+ * @param {any} [val] The value to be wrapped in an array
+ */
+export function arrify (val) {
+  if (val === undefined || val === null) { return [] }
+  return isarray(val) ? val : [ val ]
 }
