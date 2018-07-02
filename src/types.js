@@ -36,10 +36,11 @@ export function isarray (val) {
 
 /**
  * Tests whether a reference is an object.
- * Be careful, returns false for arrays (which are actually objects)
+ * Warning, array are objects.
  * @param {any} val the value to be tested
  * @returns {boolean}
  */
 export function isobj (val) {
-  return val && (typeof val === 'object') && !isarray(val)
+  // babel transpiles typeof in a strange way, force returning a boolean
+  return !!(val && (typeof val === 'object'))
 }

@@ -47,7 +47,7 @@ function createLogger ({ name, level, color, output, tag }) {
 /**
  * A logger class which prepends messages with a badge containing the log name, level and optionally a tag
  */
-class Logger {
+export default class Logger {
   /**
    * @param {string} name The name of the log to display in every message
    * @param {string} [tag] An optional tag (for example to display a specific subsystem messages)
@@ -96,6 +96,3 @@ class Logger {
     this.tag = tag => new Logger({ name, tag })
   }
 }
-
-// Export the root logger instance
-export default new Logger({ name: 'HUBVISOR' })
