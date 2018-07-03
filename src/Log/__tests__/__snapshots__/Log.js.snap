@@ -61,9 +61,41 @@ exports[`Log levels 1`] = `
 }
 `;
 
-exports[`Log levels 2`] = `[MockFunction]`;
+exports[`Log levels 2`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "%cwarn",
+      "background: #FF9800; color: #fff; padding: 2px 4px;",
+      "test",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
 
-exports[`Log levels 3`] = `[MockFunction]`;
+exports[`Log levels 3`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "%cerror",
+      "background: #F44336; color: #fff; padding: 2px 4px;",
+      "test",
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
 
 exports[`Log no tag 1`] = `
 [MockFunction] {

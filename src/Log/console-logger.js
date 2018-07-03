@@ -40,12 +40,11 @@ function createBadge ({ level, name, tag }) {
   return [ badgeFormatString, ...badgeArgs ]
 }
 
-const consoleOutputs = {
-  warn: console.warn,
-  error: console.error
-}
-
 export default function consoleLogger ({ level, name, tag, items }) {
+  const consoleOutputs = {
+    warn: console.warn,
+    error: console.error
+  }
   const badge = createBadge({ name, level, tag })
   const output = consoleOutputs[level] || console.log
 

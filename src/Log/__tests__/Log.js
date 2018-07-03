@@ -63,6 +63,8 @@ describe('Log', () => {
     log.trace('test')
     log.debug('test')
     log.info('test')
+    log.warn('test')
+    log.error('test')
 
     expect(consoleLog).toMatchSnapshot()
     expect(consoleWarn).toMatchSnapshot()
