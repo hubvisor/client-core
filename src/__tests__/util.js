@@ -1,4 +1,4 @@
-import { arrify, uuid, hashCode, pause } from '../util'
+import { arrify, uuid, hashCode, pause, defer } from '../util'
 
 describe('util', () => {
   test('uuid', () => {
@@ -55,5 +55,12 @@ describe('util', () => {
     await (() => pausePromise)() // we have to await because there is a run loop operation in 'resolve'
 
     expect(callback).toBeCalled()
+  })
+
+  test('defer', async () => {
+    const resolved = jest.fn()
+    const rejected = jest.fn()
+
+    const x = defer()
   })
 })

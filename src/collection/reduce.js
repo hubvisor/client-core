@@ -1,4 +1,4 @@
-import { isarray } from './types'
+import { isarray } from '../types'
 
 /**
  * A reduce function that can be applied to both arrays or objects.
@@ -7,7 +7,7 @@ import { isarray } from './types'
  * @param {function} reducer A callback to be called for each (value, key) pair of the input value with (last, value, key, source) arguments.
  * @param {*} initialValue The inital value provided as initial "last" value.
  */
-export function _reduce (source, reducer, initialValue) {
+export default function reduce (source, reducer, initialValue) {
   if (arguments.length < 3) { throw new Error('initialValue is required for _reduce !') }
 
   const reduceArray = isarray(source)

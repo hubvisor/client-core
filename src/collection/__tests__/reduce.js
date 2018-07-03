@@ -1,4 +1,4 @@
-import { _reduce } from '../collection'
+import reduce from '../reduce'
 
 describe('_reduce', () => {
   const accArgs = (memo, value, key, source) => {
@@ -13,19 +13,19 @@ describe('_reduce', () => {
     const empty = []
 
     test('without initial value', () => {
-      expect(() => _reduce(array, sum)).toThrow()
+      expect(() => reduce(array, sum)).toThrow()
     })
 
     test('empty', () => {
-      expect(_reduce(empty, sum, initialValue)).toEqual(initialValue)
+      expect(reduce(empty, sum, initialValue)).toEqual(initialValue)
     })
 
     test('non-empty', () => {
-      expect(_reduce(array, sum, initialValue)).toEqual(array.reduce(sum, initialValue))
+      expect(reduce(array, sum, initialValue)).toEqual(array.reduce(sum, initialValue))
     })
 
     test('parameters', () => {
-      expect(_reduce(array, accArgs, [])).toEqual(array.reduce(accArgs, []))
+      expect(reduce(array, accArgs, [])).toEqual(array.reduce(accArgs, []))
     })
   })
 
@@ -34,19 +34,19 @@ describe('_reduce', () => {
     const empty = {}
 
     test('without initial value', () => {
-      expect(() => _reduce(object, sum)).toThrow()
+      expect(() => reduce(object, sum)).toThrow()
     })
 
     test('empty', () => {
-      expect(_reduce(empty, sum, initialValue)).toEqual(initialValue)
+      expect(reduce(empty, sum, initialValue)).toEqual(initialValue)
     })
 
     test('non-empty', () => {
-      expect(_reduce(object, sum, initialValue)).toEqual(object.foo + object.bar + initialValue)
+      expect(reduce(object, sum, initialValue)).toEqual(object.foo + object.bar + initialValue)
     })
 
     test('parameters', () => {
-      expect(_reduce(object, accArgs, [])).toEqual([ // warning, depends on iteration order on object. Fix me
+      expect(reduce(object, accArgs, [])).toEqual([ // warning, depends on iteration order on object. Fix me
         { key: 'foo', value: 42, source: object },
         { key: 'bar', value: 10, source: object }
       ])
