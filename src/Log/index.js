@@ -1,5 +1,9 @@
 import { autobind } from '../util'
 import consoleLog from './console-logger'
+
+// because of https://github.com/jsdoc3/jsdoc/issues/1132
+/** @module Log */
+
 /**
  * This callback is displayed as part of the Requester class.
  * @callback Log~Logger
@@ -11,7 +15,7 @@ import consoleLog from './console-logger'
  */
 
 /**
- * A logger class which prepends messages with a badge containing the log name, level and optionally a tag
+ * Logs messages to a logger implementation
  */
 export default class Log {
 
