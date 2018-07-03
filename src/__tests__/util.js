@@ -1,4 +1,4 @@
-import { arrify, uuid, hashCode, pause, defer } from '../util'
+import { arrify, uuid, hashCode } from '../util'
 
 describe('util', () => {
   test('uuid', () => {
@@ -37,30 +37,5 @@ describe('util', () => {
         }
       })
     })
-  })
-
-  test('pause', async () => {
-    jest.useFakeTimers()
-
-    const callback = jest.fn()
-
-    const pausePromise = pause(1.5).then(callback)
-
-    // at 1sec callback should not yet be called
-    jest.advanceTimersByTime(1000)
-    expect(callback).not.toBeCalled()
-
-    // after delay, callback should have been called
-    jest.advanceTimersByTime(1600)
-    await (() => pausePromise)() // we have to await because there is a run loop operation in 'resolve'
-
-    expect(callback).toBeCalled()
-  })
-
-  test('defer', async () => {
-    const resolved = jest.fn()
-    const rejected = jest.fn()
-
-    const x = defer()
   })
 })
