@@ -73,12 +73,13 @@ describe('Log', () => {
 
   test('noop log', () => {
     const log = Log.noop()
-    log.trace('test')
-    log.debug('test')
     log.info('test')
-
     expect(consoleLog).toMatchSnapshot()
-    expect(consoleWarn).toMatchSnapshot()
-    expect(consoleError).toMatchSnapshot()
+  })
+
+  test('constructor ', () => {
+    const log = new Log()
+    log.info('test')
+    expect(consoleLog).toMatchSnapshot()
   })
 })

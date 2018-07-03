@@ -25,6 +25,8 @@ exports[`Log chain tag 1`] = `
 }
 `;
 
+exports[`Log constructor  1`] = `[MockFunction]`;
+
 exports[`Log levels 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -122,10 +124,6 @@ exports[`Log no tag 1`] = `
 `;
 
 exports[`Log noop log 1`] = `[MockFunction]`;
-
-exports[`Log noop log 2`] = `[MockFunction]`;
-
-exports[`Log noop log 3`] = `[MockFunction]`;
 
 exports[`Log one tag 1`] = `
 [MockFunction] {
