@@ -6,12 +6,12 @@ import { isarray } from '../types'
  * @param {array|object} source The value to be reduced.
  * @param {function} reducer A callback to be called for each (value, key) pair of the input value with (last, value, key, source) arguments.
  * @param {*} initialValue The inital value provided as initial "last" value.
+ * @returns {*} The value returned by the last call of reducer.
  */
 export default function reduce (source, reducer, initialValue) {
   if (arguments.length < 3) { throw new Error('initialValue is required for _reduce !') }
+  if (!source) { return initialValue }
 
-  const reduceArray = isarray(source)
-  const collection = reduceArray ? source : Object.entries(source)
-  const iterator = reduceArray ? reducer : (last, [ key, value ]) => reducer(last, value, key, source)
-  return collection.reduce(iterator, initialValue)
+  if (isarray(source)) { return source.reduce(reducer, initialValue) }
+  return Object.entries(source).reduce((last, [ key, value ]) => reducer(last, value, key, source), initialValue)
 }

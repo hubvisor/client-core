@@ -1,5 +1,5 @@
 import { autobind } from '../util'
-import consoleLog from './console-logger'
+import consoleLog from './consoleLogger'
 
 // because of https://github.com/jsdoc3/jsdoc/issues/1132
 /** @module Log */
@@ -18,8 +18,7 @@ import consoleLog from './console-logger'
  * Logs messages to a logger implementation
  */
 export default class Log {
-
-  static console({ name, tag } = {}) { return new Log({ name, tag, logger: consoleLog }) }
+  static console ({ name, tag } = {}) { return new Log({ name, tag, logger: consoleLog }) }
 
   static noop ({ name, tag } = {}) { return new Log({ name, tag }) }
 

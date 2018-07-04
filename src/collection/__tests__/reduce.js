@@ -1,12 +1,17 @@
 import reduce from '../reduce'
 
-describe('_reduce', () => {
+describe('reduce', () => {
   const accArgs = (memo, value, key, source) => {
     memo.push({ value, key, source })
     return memo
   }
   const sum = (memo, current) => memo + current
   const initialValue = 10
+
+  test('No initial value', () => {
+    expect(reduce(undefined, accArgs, [])).toEqual([])
+    expect(reduce(undefined, accArgs, {})).toEqual({})
+  })
 
   describe('Array', () => {
     const array = [ 1, 2, 3 ]

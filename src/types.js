@@ -8,6 +8,15 @@ export function isstring (val) {
 }
 
 /**
+ * Tests whether a reference is a number.
+ * @param {any} val the value to be tested
+ * @returns {boolean}
+ */
+export function isnum (val) {
+  return (val instanceof Number) || (typeof val === 'number')
+}
+
+/**
  * Tests whether a reference is a boolean.
  * @param {any} val the value to be tested
  * @returns {boolean}

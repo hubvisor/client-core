@@ -1,4 +1,4 @@
-import { isstring } from './types'
+import { isarray } from './types'
 
 // imported from prebid.js
 function _uuid (placeholder) {
@@ -44,11 +44,10 @@ export function autobind (self) {
 }
 
 /**
- * Wraps values in an array when they are not iterable. null and undefined values are converted to empty array.
+ * Wraps values in an array when they are not. null and undefined values are converted to empty array.
  * @param {any} [val] The value to be wrapped in an array
  */
 export function arrify (val) {
   if (val === undefined || val === null) { return [] }
-  if (isstring(val)) { return [ val ] } // don't check strings because they are iterable...
-  return val[Symbol.iterator] ? Array.from(val) : [ val ]
+  return isarray(val) ? Array.from(val) : [ val ]
 }

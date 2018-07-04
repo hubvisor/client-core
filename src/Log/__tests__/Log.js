@@ -5,7 +5,7 @@ describe('Log', () => {
   let consoleWarn
   let consoleError
 
-  beforeEach (() => {
+  beforeEach(() => {
     consoleLog = jest.spyOn(console, 'log')
     consoleWarn = jest.spyOn(console, 'warn')
     consoleError = jest.spyOn(console, 'error')
@@ -15,7 +15,7 @@ describe('Log', () => {
     mocks.forEach(mock => mock.mockImplementation(() => { /* do nothing */ }))
   })
 
-  afterEach (() => {
+  afterEach(() => {
     [ consoleLog, consoleWarn, consoleError ].forEach(mock => {
       mock.mockReset()
       mock.mockRestore()
@@ -23,10 +23,6 @@ describe('Log', () => {
   })
 
   const logArgs = [ 'foo', 'bar', 42, { foo: 'bar' } ]
-  const badge = 1
-  const nameColor = 1
-  const levelColor = 1
-  const tagColor = 1
 
   test('without name', () => {
     const log = Log.console()

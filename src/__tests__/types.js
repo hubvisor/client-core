@@ -1,5 +1,8 @@
 import { isstring, isbool, isfunc, isarray, isobj } from '../types'
 
+// we WANT to test functions against boxed values
+/* eslint-disable no-new-wrappers */
+
 class TestClass {}
 
 const Type = {
@@ -16,6 +19,8 @@ function buildSamples () {
     samples.push({ value: val, types: new Set(types) })
   }
 
+  pushSample(undefined)
+  pushSample(null)
   pushSample(true, Type.bool)
   pushSample(false, Type.bool)
   pushSample(new Boolean(false), Type.bool, Type.object)
