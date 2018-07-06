@@ -1,4 +1,4 @@
-import { isobj, isbool, isnum, isstring } from './types'
+import { isobj, isbool, isnum, isstring, isfunc } from './types'
 import mapValues from './collection/mapValues'
 
 /**
@@ -7,7 +7,7 @@ import mapValues from './collection/mapValues'
  * @returns the cloned copy
  */
 export default function clone (val) {
-  if (isbool(val) || isnum(val) || isstring(val)) { // maybe boxed objects not primitives
+  if (isbool(val) || isnum(val) || isstring(val) || isfunc(val)) { // maybe boxed objects not primitives
     return val
   }
   // TODO: handle Sets and other specific types
