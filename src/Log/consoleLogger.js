@@ -42,10 +42,11 @@ function createBadge ({ level, name, tag }) {
 
 export default function consoleLogger ({ level, name, tag, items }) {
   const consoleOutputs = {
+    table: console.table,
     warn: console.warn,
     error: console.error
   }
-  const badge = createBadge({ name, level, tag })
+  const badge = level === 'table' ? [] : createBadge({ name, level, tag })
   const output = consoleOutputs[level] || console.log
 
   return output(...badge, ...items)

@@ -71,6 +71,12 @@ export default class Log {
   error (...items) { this._log('error', items) }
 
   /**
+   * Displays data in a tabular form, @see {@link https://developer.mozilla.org/fr/docs/Web/API/Console/table}
+   * @param {object|array} data The data to see in a table
+   */
+  table (data) { this._log('table', [ data ]) }
+
+  /**
    * Instantiates a new Logger instance with a given tag
    * @param {string} tag The tag to create the logger with
    * @returns {Logger} The new logger using the provided tag
