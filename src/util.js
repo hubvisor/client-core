@@ -64,7 +64,7 @@ export function patch (obj, prop, replacement) {
   obj[prop] = function (...args) {
     // don't forget to rebind 'previous' to current call context
     // it's caller responsibility to use a function or a fatarrow as replacement
-    replacement({ previous: previous && previous.bind(this), stop }, ...args)
+    return replacement({ previous: previous && previous.bind(this), stop }, ...args)
   }
   return { previous, stop }
 }
