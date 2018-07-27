@@ -51,3 +51,20 @@ export function arrify (val) {
   if (val === undefined || val === null) { return [] }
   return isarray(val) ? Array.from(val) : [ val ]
 }
+
+/**
+ * Monkey Patches an object function. Overrides it with a replacement which will be provided the ability to call the original version back.
+ * @param {*} obj The object to replace a function on
+ * @param {*} prop The name of the function to be replaced
+ * @param {function} replacement A callback to be called instead of the original function with ({ previous, stop }, ...args) arguments
+ */
+export function patch (obj, prop, replacement) {
+  const previous = obj[prop]
+  function stop () { obj[prop] = previous }
+  obj[prop] = function (...args) {
+    // don't forget to rebind 'previous' to current call context
+    // it's caller responsibility to use a function or a fatarrow as replacement
+    replacement({ previous: previous && previous.bind(this), stop }, ...args)
+  }
+  return { previous, stop }
+}
