@@ -38,10 +38,9 @@ describe('reduce', () => {
     })
 
     test('non-empty', () => {
-      const empty = {}
       const cb = jest.fn()
 
-      forEach(empty, cb)
+      forEach(object, cb)
 
       expect(cb).toMatchSnapshot()
     })
