@@ -29,6 +29,6 @@
     "build": "yarn doc && yarn build:esm"
   },
   "devDependencies": {
-    "@hubvisor/build-core": "^0.1.2"
+    "@hubvisor/build-core": "^0.1.6"
   }
 }
