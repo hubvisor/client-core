@@ -68,3 +68,16 @@ export function patch (obj, prop, replacement) {
   }
   return { previous, stop }
 }
+
+/**
+ *
+ */
+export function memoize (fn) {
+  let result
+  return function () {
+    if (!result) {
+      result = { value: fn.apply(this, arguments) }
+    }
+    return result.value
+  }
+}
