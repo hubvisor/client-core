@@ -34,10 +34,21 @@ describe('clone', () => {
     expect(result[8]).toBe(source[8])
   })
 
-  test('values', () => {
-    const val = [ 1, null, undefined, 'foo', new Number(123), new String('abc'), new Boolean(true), (foo) => { console.log(foo) } ]
+  test('kind of values', () => {
+    const val = [ 1, null, undefined, 'foo', new Number(123), new String('abc'), new Boolean(true), (foo) => { console.log(foo) }, /abc/i ]
     val.forEach(v => {
-      expect(clone(v)).toBe(v)
+      expect(clone(v)).toEqual(v)
     })
+  })
+
+  test('cycles', () => {
+    const foo = { foo: 'bar' }
+    const bar = { bar: 'baz' }
+    foo.bar = bar
+    bar.foo = foo
+
+    const cloned = clone(foo)
+    expect(cloned.bar).toBe(cloned.bar.foo.bar)
+    expect(cloned).toEqual(foo) // cool, jest equal supports cycles
   })
 })

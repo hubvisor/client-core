@@ -6,8 +6,10 @@ import keyBy from './keyBy'
 import map from './map'
 import mapValues from './mapValues'
 import reduce from './reduce'
+import forEach from './forEach'
 
 export {
+  forEach,
   compact,
   filter,
   flatten,
