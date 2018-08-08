@@ -1,4 +1,4 @@
-import { isobj, isarray } from './types'
+import { isobj } from './types'
 import { forEach } from './collection'
 
 /**
@@ -8,9 +8,9 @@ import { forEach } from './collection'
  */
 function _createClone (val) {
   switch (val.constructor) {
-    case String: return new String(val)
-    case Number: return new Number(val)
-    case Boolean: return new Boolean(+val)
+    case String: return new String(val) // eslint-disable-line no-new-wrappers
+    case Number: return new Number(val) // eslint-disable-line no-new-wrappers
+    case Boolean: return new Boolean(+val) // eslint-disable-line no-new-wrappers
     case Date: return new Date(+val)
     // Matches `RegExp` flags from their coerced string values.
     case RegExp: return new RegExp(val.source, /\w*$/.exec(val))
@@ -37,7 +37,7 @@ function _cloneChilds (dst, src, cloneChild) {
       src.forEach((child, key) => dst.set(key, cloneChild(child)))
       break
     case Object:
-      forEach(src, (child, key) => dst[key] = cloneChild(child))
+      forEach(src, (child, key) => { dst[key] = cloneChild(child) })
       break
   }
 }
