@@ -7,6 +7,7 @@ import map from './map'
 import mapValues from './mapValues'
 import reduce from './reduce'
 import forEach from './forEach'
+import transform from './transform'
 
 export {
   forEach,
@@ -17,5 +18,6 @@ export {
   keyBy,
   map,
   mapValues,
-  reduce
+  reduce,
+  transform
 }
