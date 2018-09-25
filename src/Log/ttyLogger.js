@@ -38,8 +38,8 @@ function createBadge ({ level, name, tag }) {
       formatter: chalk.bold.hex('#ffffff').bgHsl(...tagColor)
     }
   ]
-  .filter(item => item.value)
-  .map(({ value, formatter }) => formatter(value))
+    .filter(item => item.value)
+    .map(({ value, formatter }) => formatter(value))
 
   return [ items.join('') ]
 }
