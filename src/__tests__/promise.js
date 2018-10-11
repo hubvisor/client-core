@@ -1,9 +1,8 @@
-import { pause, defer } from '../promise'
+import { pause, defer, poll } from '../promise'
 
 describe('promise', () => {
   test('pause', async () => {
     jest.useFakeTimers()
-
     const callback = jest.fn()
 
     const pausePromise = pause(1.5).then(callback)
@@ -43,5 +42,55 @@ describe('promise', () => {
 
       return expect(promise).rejects.toEqual(rejectedValue)
     })
+  })
+
+  test('poll getting value within deadline', async () => {
+    jest.useFakeTimers()
+
+    let value
+    const fetchValue = jest.fn(() => value)
+    const checkValue = () => poll({ interval: 0.1, deadline: 1 }, fetchValue)
+    const firstStep = checkValue()
+    expect(fetchValue).toHaveBeenCalledTimes(1)
+
+    jest.advanceTimersByTime(100)
+    await 'the next runloop'
+    expect(fetchValue).toHaveBeenCalledTimes(2)
+
+    jest.advanceTimersByTime(100)
+    await 'the next runloop'
+
+    value = 42
+
+    jest.advanceTimersByTime(100)
+    await 'the next runloop'
+    expect(fetchValue).toHaveBeenCalledTimes(4)
+
+    expect(await firstStep).toBe(42)
+  })
+
+  test('poll without value within deadline', async () => {
+    jest.useFakeTimers()
+
+    let value
+    const fetchValue = jest.fn(() => value)
+    const checkValue = () => poll({ interval: 0.1, deadline: 1 }, fetchValue)
+    const firstStep = checkValue()
+    expect(fetchValue).toHaveBeenCalledTimes(1)
+
+    // Let's reach the deadline
+    for (let i = 0; i < 10; ++i) {
+      jest.advanceTimersByTime(100)
+      await 'the next runloop'
+    }
+    expect(fetchValue).toHaveBeenCalledTimes(10)
+    expect(await firstStep).toBeUndefined()
+
+    // Let's go one second further than the deadline
+    for (let i = 0; i < 10; ++i) {
+      jest.advanceTimersByTime(100)
+      await 'the next runloop'
+    }
+    expect(fetchValue).toHaveBeenCalledTimes(10)
   })
 })
