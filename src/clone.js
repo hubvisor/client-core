@@ -1,4 +1,4 @@
-import { isobj } from './types'
+import { isObj } from './types'
 import { forEach } from './collection'
 
 /**
@@ -50,7 +50,7 @@ function _cloneChilds (dst, src, cloneChild) {
  */
 function _clone (val, cloneMap = new Map()) {
   // return primitive values
-  if (!isobj(val)) { return val }
+  if (!isObj(val)) { return val }
 
   // null is an singleton object
   if (val === null) { return val }

@@ -1,4 +1,4 @@
-import { isarray } from '../types'
+import { isArray } from '../types'
 import reduce from './reduce'
 
 /**
@@ -11,7 +11,7 @@ import reduce from './reduce'
  */
 export default function flatten (source) {
   return reduce(source, (last, value) => {
-    if (isarray(value)) {
+    if (isArray(value)) {
       last.push(...value)
     } else {
       last.push(value)

@@ -1,4 +1,4 @@
-import { isarray } from '../types'
+import { isArray } from '../types'
 import reduce from './reduce'
 
 /**
@@ -8,7 +8,7 @@ import reduce from './reduce'
  * @returns {array|object} The filtered collection.
  */
 export default function filter (source, predicate) {
-  if (isarray(source)) { return source.filter(predicate) }
+  if (isArray(source)) { return source.filter(predicate) }
   return reduce(source, (last, value, key) => {
     if (predicate(value, key, source)) {
       last[key] = value

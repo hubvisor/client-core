@@ -3,7 +3,7 @@
  * @param {any} val the value to be tested
  * @returns {boolean}
  */
-export function isstring (val) {
+export function isString (val) {
   return (val instanceof String) || (typeof val === 'string')
 }
 
@@ -12,7 +12,7 @@ export function isstring (val) {
  * @param {any} val the value to be tested
  * @returns {boolean}
  */
-export function isnum (val) {
+export function isNum (val) {
   return (val instanceof Number) || (typeof val === 'number')
 }
 
@@ -21,7 +21,7 @@ export function isnum (val) {
  * @param {any} val the value to be tested
  * @returns {boolean}
  */
-export function isbool (val) {
+export function isBool (val) {
   return (val instanceof Boolean) || (typeof val === 'boolean')
 }
 
@@ -30,7 +30,7 @@ export function isbool (val) {
  * @param {any} val the value to be tested
  * @returns {boolean}
  */
-export function isfunc (val) {
+export function isFunc (val) {
   return typeof val === 'function'
 }
 
@@ -39,7 +39,7 @@ export function isfunc (val) {
  * @param {any} val the value to be tested
  * @returns {boolean}
  */
-export function isarray (val) {
+export function isArray (val) {
   return Array.isArray(val)
 }
 
@@ -49,7 +49,7 @@ export function isarray (val) {
  * @param {any} val the value to be tested
  * @returns {boolean}
  */
-export function isobj (val) {
+export function isObj (val) {
   // babel transpiles typeof in a strange way, force returning a boolean
   return !!(val && (typeof val === 'object'))
 }
