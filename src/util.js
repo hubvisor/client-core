@@ -1,4 +1,4 @@
-import { isarray } from './types'
+import { isArray } from './types'
 
 // imported from prebid.js
 function _uuid (placeholder) {
@@ -49,7 +49,7 @@ export function autobind (self) {
  */
 export function arrify (val) {
   if (val === undefined || val === null) { return [] }
-  return isarray(val) ? Array.from(val) : [ val ]
+  return isArray(val) ? Array.from(val) : [ val ]
 }
 
 /**

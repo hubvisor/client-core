@@ -1,4 +1,4 @@
-import { isstring, isbool, isfunc, isarray, isobj } from '../types'
+import { isString, isBool, isFunc, isArray, isObj } from '../types'
 
 // we WANT to test functions against boxed values
 /* eslint-disable no-new-wrappers */
@@ -48,11 +48,11 @@ function buildSamples () {
 
 function testTypes (samples, testedType) {
   const testFuncs = {
-    [Type.bool]: isbool,
-    [Type.string]: isstring,
-    [Type.func]: isfunc,
-    [Type.array]: isarray,
-    [Type.object]: isobj
+    [Type.bool]: isBool,
+    [Type.string]: isString,
+    [Type.func]: isFunc,
+    [Type.array]: isArray,
+    [Type.object]: isObj
   }
 
   const testedFunc = testFuncs[testedType]
@@ -68,23 +68,23 @@ function testTypes (samples, testedType) {
 describe('types', () => {
   const samples = buildSamples()
 
-  test('isstring', () => {
+  test('isString', () => {
     testTypes(samples, Type.string)
   })
 
-  test('isbool', () => {
+  test('isBool', () => {
     testTypes(samples, Type.bool)
   })
 
-  test('isfunc', () => {
+  test('isFunc', () => {
     testTypes(samples, Type.func)
   })
 
-  test('isarray', () => {
+  test('isArray', () => {
     testTypes(samples, Type.array)
   })
 
-  test('isobj', () => {
+  test('isObj', () => {
     testTypes(samples, Type.object)
   })
 })

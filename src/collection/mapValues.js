@@ -1,5 +1,5 @@
 import reduce from './reduce'
-import { isarray } from '../types'
+import { isArray } from '../types'
 
 /**
  * A map function that can be applied to both arrays or objects. Respects the source object type.
@@ -9,7 +9,7 @@ import { isarray } from '../types'
  * @returns {array|object} An array or object with values returned by the mapping function for each (value, key) pair of the input value.
  */
 export default function mapValues (source, mapFn) {
-  if (isarray(source)) { return source.map(mapFn) }
+  if (isArray(source)) { return source.map(mapFn) }
   return reduce(source, (last, value, key) => {
     last[key] = mapFn(value, key, source)
     return last

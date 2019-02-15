@@ -1,4 +1,4 @@
-import { isarray } from '../types'
+import { isArray } from '../types'
 
 /**
  * A reduce function that can be applied to both arrays or objects.
@@ -12,6 +12,6 @@ export default function reduce (source, reducer, initialValue) {
   if (arguments.length < 3) { throw new Error('initialValue is required for _reduce !') }
   if (!source) { return initialValue }
 
-  if (isarray(source)) { return source.reduce(reducer, initialValue) }
+  if (isArray(source)) { return source.reduce(reducer, initialValue) }
   return Object.entries(source).reduce((last, [ key, value ]) => reducer(last, value, key, source), initialValue)
 }
