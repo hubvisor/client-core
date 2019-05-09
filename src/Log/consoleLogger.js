@@ -20,6 +20,10 @@ const levelColors = {
 }
 
 function createBadge ({ level, name, tag }) {
+  const isIE11 = /Trident\/7.0/i.test(navigator.userAgent)
+  if (isIE11) {
+    return [ [ name, level, tag ].map(v => `[${v}]`).join('') ]
+  }
   const tagColor = colorFromTag(tag)
   const levelColor = levelColors[level] || '#000'
   const badge = [
