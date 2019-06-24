@@ -25,8 +25,7 @@
     "prebuild": "rm -rf dist",
     "build:esm": "mkdir -p dist/esm && NODE_ENV=production babel src --out-dir dist/esm",
     "build:cjs": "mkdir -p dist/cjs && NODE_ENV=production MODULE_TYPE=cjs babel src --out-dir dist/cjs",
-    "doc": "jsdoc src/** -d docs",
-    "build": "yarn doc && yarn build:esm"
+    "build": "yarn build:esm"
   },
   "devDependencies": {
     "@hubvisor/build-core": "^0.1.6"
