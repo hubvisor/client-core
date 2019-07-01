@@ -22,11 +22,11 @@ exports[`reduce Object non-empty 1`] = `
   ],
   "results": Array [
     Object {
-      "isThrow": false,
+      "type": "return",
       "value": undefined,
     },
     Object {
-      "isThrow": false,
+      "type": "return",
       "value": undefined,
     },
   ],
