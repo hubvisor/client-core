@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`reduce Object non-empty 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      42,
+      "foo",
+      Object {
+        "bar": 10,
+        "foo": 42,
+      },
+    ],
+    Array [
+      10,
+      "bar",
+      Object {
+        "bar": 10,
+        "foo": 42,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
